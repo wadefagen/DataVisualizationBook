@@ -1,111 +1,23 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Datavisualizationbook by wadefagen</title>
+---
+layout: default
+---
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Datavisualizationbook</h1>
-        <p></p>
+<div class="home">
 
-        <p class="view"><a href="https://github.com/wadefagen/DataVisualizationBook">View the Project on GitHub <small>wadefagen/DataVisualizationBook</small></a></p>
+  <h1 class="page-heading">Posts</h1>
 
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-        <ul>
-          <li><a href="https://github.com/wadefagen/DataVisualizationBook/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/wadefagen/DataVisualizationBook/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/wadefagen/DataVisualizationBook">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a id="scales" class="anchor" href="#scales" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Scales</h1>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
 
-<p>Scales are fundamental to every visualization you will create because they allow us to translate data from a data point to a visual encoding.  For example, visualizing a grade on an exam requires the data point (ex: 92%) to be placed on the visualization at the appropriate location to indicate that the grade was a 92%.</p>
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
-<p>d3.js provides numerous built-in scales that covers the most common visual encodings of data.  Your choice of what scale to use will be primary driven by your underlying data:</p>
-
-<ol>
-<li><p>Quantitative data is nearly always in a continuous domain (ex: grades are any value between 0-100, the temperature outside is any value between 0-100, etc).  We’ll explore scales that allow to scale this data to both a continuous range (ex: linearly, logarithmically) and to scale this data to discrete ranges (ex: quantize, quantile).</p></li>
-<li><p>Categorical data contains a set of fixed, discrete values as data points and uses a different set of scales due to the discrete domain.  We’ll explore scales appropriate for bar-chart-style visualizations ("bands") and for single-point visualizations ("points").</p></li>
-</ol>
-
-<p>Before we get into using scales, we need to understand two fundamental aspects of a scale: domain and range.  If you a familiar with mathematical functions, you will find a scale is nothing more than a mathematical function (y = f(x)) that maps an input domain (x) to a range (y).</p>
-
-<h2>
-<a id="input-domain" class="anchor" href="#input-domain" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Input Domain</h2>
-
-<p>The input domain is the set of values where the scale is defined.  For some scales, the domain is continuous (ex: all possible values between two numbers) or discrete (ex: a set of numbers, categories, or labels).  Continuous domains are often used for quantitative data, where the data is between two fixed points or between a minimum and maximum value.  Discrete domains are used for categorical data, where the data can only be a specific set of values.
-d3.js represents all domains, both continuous and discrete, as an array. </p>
-
-<h3>
-<a id="representing-a-continuous-domain-in-d3js" class="anchor" href="#representing-a-continuous-domain-in-d3js" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Representing a Continuous Domain in d3.js</h3>
-
-<p>Continuous domains are represented by an array of two or more elements.  For example, a grade on an exam (where the exam is scored 0-100) has a continuous from 0 to 100; this is represented by <code>[0, 100]</code>.  The GDP per person across various countries may range from $100-$20,000; this is represented by <code>[100, 20000]</code>.</p>
-
-<h3>
-<a id="representing-a-discrete-domain-in-d3js" class="anchor" href="#representing-a-discrete-domain-in-d3js" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Representing a Discrete Domain in d3.js</h3>
-
-<p>Discrete domains are represented by an array of element where each element is a category.  If we have categorized weeks as being “Extremely Dry”, “Dry”, “Average”, “Wet”, and “Extremely Wet”, the domain is the array <code>[TODO]</code>.</p>
-
-<h2>
-<a id="output-range" class="anchor" href="#output-range" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output Range</h2>
-
-<p>The output range is the set of values where the scale will map values to from the domain.  While the domain is defined in terms of the input data, the range is defined in terms of the visualization.  For visual encoding of planar features, this range is often in terms of the width or height of the drawing region; for other features, the range may be a color (hue, saturation, etc), value, or other value.</p>
-
-<p>Depending on the scale used, continuous domains may have either continuous or discrete ranges.  d3.js represents a range in the same way as a domain.</p>
-
-<h2>
-<a id="scale-variables" class="anchor" href="#scale-variables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Scale Variables</h2>
-
-<p>d3.js stores all information relevant to a specific scale in a scale inside a single JavaScript variable.  To initialize one of these variables, we need three pieces of information:</p>
-
-<ul>
-<li>The scaling method (ex: linearScale)</li>
-<li>The input domain</li>
-<li>The output range</li>
-</ul>
-
-<h2>
-<a id="linear-scale" class="anchor" href="#linear-scale" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Linear Scale</h2>
-
-<p>The simplest, and often most useful, scaling method is a linear scale.  A linear scale takes a continuous domain and transforms it to a continuous range using a linear function.  For example, a domain of [0, 10] to a range of [0, 100] would scale input by a factor of 10 (ex: 4 becomes 40, 3.2 becomes 32, etc).</p>
-
-<p>A linearScale is initiated with the <code>d3.scaleLinear()</code> method and a domain and range is applied:</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> linearScale <span class="pl-k">=</span> <span class="pl-smi">d3</span>.<span class="pl-en">scaleLinear</span>()
-                    .<span class="pl-en">domain</span>(   <span class="pl-c">/* domain */</span>   )
-                    .<span class="pl-en">range</span>(   <span class="pl-c">/* range */</span>    );</pre></div>
-
-<p>Linear scales are frequently used and are particularly useful for planar variables, specifically where the data is plotted with on an axis.</p>
-
-<h2>
-<a id="example-1-a-linear-scale-for-grades" class="anchor" href="#example-1-a-linear-scale-for-grades" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 1: A Linear Scale for Grades</h2>
-
-<p>The demo visualization "Grades on a Horizontal Axis" uses grades for a ten-student course and places a circle along a horizontal axis to denote how each student performed on an exam.  The input data for this visualization is in the following format:</p>
-
-<div class="highlight highlight-source-json"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Alice<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>grade<span class="pl-pds">"</span></span>: <span class="pl-c1">87</span> }
-{ <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Bob<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>grade<span class="pl-pds">"</span></span>: <span class="pl-c1">63</span> }
-...</pre></div>
-
-<p>The grade for each data entry is quantitative data that will always be between the values of 0 and 100 (inclusively). </p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/wadefagen">wadefagen</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
-</html>
+</div>
