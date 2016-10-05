@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/css/bootstrap.3.3.7.css" rel="stylesheet">
-    <link href="/css/cs205.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/cs205guidebook.png" rel="icon" type="image/png">
+    <link href="{{ "/css/bootstrap.3.3.7.css" | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ "/css/cs205.css" | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ "/css/main.css" | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ "/css/cs205guidebook.png" | prepend: site.baseurl }}" rel="icon" type="image/png">
+
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
     <title>CS 205: Guidebook</title>
   </head>
