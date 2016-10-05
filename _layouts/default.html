@@ -2,33 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Datavisualizationbook by wadefagen</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-    <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link href="/css/bootstrap.3.3.7.css" rel="stylesheet">
+    <link href="/css/cs205.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/cs205guidebook.png" rel="icon" type="image/png">
+
+    <title>CS 205: Guidebook</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Datavisualizationbook</h1>
-        <p></p>
-
-        <p class="view"><a href="https://github.com/wadefagen/DataVisualizationBook">View the Project on GitHub <small>wadefagen/DataVisualizationBook</small></a></p>
-
-        <ul>
-          <li><a href="https://github.com/wadefagen/DataVisualizationBook/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/wadefagen/DataVisualizationBook/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/wadefagen/DataVisualizationBook">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        {{content}}
-      </section>
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">CS 205 Guidebook</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="https://courses.engr.illinois.edu/cs199205/">Course Website</a>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
+          {{content}}
+        </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
   </body>
 </html>
