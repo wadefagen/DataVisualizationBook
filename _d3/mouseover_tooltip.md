@@ -115,6 +115,7 @@ svg.selectAll("grade")
    ;
 ```
 
+<!--
 ## Example: Adding a tooltip to the "Course Grades" visualization
-
 TODO
+-->
