@@ -3,6 +3,8 @@ layout: default
 title: "Graphs in Python"
 ---
 
+<style>img { max-height: 200px; margin: 0px auto; text-align: center; }
+
 # Graphs in Python
 
 ## Overview of a Graph
@@ -10,7 +12,7 @@ title: "Graphs in Python"
 One of the most powerful data structures in Computer Science is a graph.
 A graph is a set of **nodes** that are connected to other nodes via **edges**.
 
-Graphs can easily be stored by a computer and can also be easliy visualized.
+Graphs can easily be stored by a computer and can also be easily visualized.
 A graph of five nodes and four edges is visualized below:
 
 <img src="graphs_1.png" alt="A graph of five nodes and four edges.">
@@ -53,7 +55,7 @@ Finally, every node and every edge contains a dictionary of attributes.  As with
 all dictionaries, these attributes are key-value pairs.  Attributes are used to
 store what each node and edge represent in the problem that is being solved.
 
-One example of a graph is a model of a road network.  In thos model, each
+One example of a graph is a model of a road network.  In this model, each
 node is a city and each edge is the distance between the two cities.  The name
 of the city would be an attribute on every node and the distance between two cities
 would be an attribute on every edge:
@@ -208,7 +210,7 @@ for target_node_name, edge_attrs in G["A"].items():
 ```
 
 
-Alteratively, this same method can be used to find a list of all of the target
+Alternatively, this same method can be used to find a list of all of the target
 nodes without accessing the attributes:
 
 ```py
@@ -226,7 +228,7 @@ edge_attrs = G["A"]["B"]  # A dictionary, ex: {"weight": 100}
 ```
 
 
-The preceeding code will throw an error if the edge does not exist.  A method is
+The preceding code will throw an error if the edge does not exist.  A method is
 provided to check if an edge exists in `G`:
 
 ```py
@@ -236,7 +238,7 @@ hasEdge = G.has_edge("A", "B")  # A boolean, either True or False
 
 ### Example: Accessing a Path
 
-A very common operation on a grpah is to access a **path**.  A path is a series
+A very common operation on a graph is to access a **path**.  A path is a series
 of nodes, connected with edges.  A path is described by the nodes in the order
 they are visited.
 
