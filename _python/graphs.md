@@ -3,7 +3,7 @@ layout: default
 title: "Graphs in Python"
 ---
 
-<style>img { max-height: 200px; margin: 0px auto; text-align: center; }
+<style>img { max-height: 200px; margin: 0px auto; text-align: center; }</style>
 
 # Graphs in Python
 
