@@ -32,3 +32,5 @@ sass:
 collections:
   d3:
     output: true
+  python:
+    output: true
